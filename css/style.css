@@ -7,12 +7,17 @@ img { border: none; }
  #display div img { position: relative; z-index: 10; }
  #display div a { position: absolute; bottom: 0px; right: 0px; z-index: 100; }
  #display div.hovering { border: 10px solid #999; }
-#phototab { height: 500px; width: 122px; position: absolute; right: 0px; }
- #phototab_left { float: left; width: 20px; overflow: hidden; }
+
+#phototab { height: 500px; width: 136px; position: absolute; right: 0px; }
+ #phototab_left { float: left; width: 34px; overflow: hidden; }
  #phototab_right { float: right; width: 100px; background: #FFF; height: 500px; }
-#configs { height: 500px; width: 222px; position: absolute; left: -200px; }
+#configs { height: 500px; width: 236px; position: absolute; left: -200px; }
  #config_left { float: left; width: 200px; background: #FFF; height: 500px; }
- #config_right { float: right; width: 20px; overflow: hidden; }
+ #config_right { float: right; width: 34px; overflow: hidden; }
+a.plus { background: transparent url(../images/tooltip_buttons.png) no-repeat -45px -21px; width: 34px; height: 32px; display: block; float: left; margin-right: 5px; }
+a.plus:hover { background-position: -45px -108px; }
+
+
  #bg_color { border: 1px solid #999; width: 40px; height: 40px; }
  #bg_color:hover { cursor: pointer; }
  #frame_color { border: 1px solid #999; width: 40px; height: 40px; }
@@ -20,9 +25,26 @@ img { border: none; }
 #layouts { width: 100%; }
  #layouts a { display: block; margin-bottom: 10px; }
 #furniture a { background-color: #999; display: block; }
-#image_functions { display: none; position: absolute; background: #FFF; width: 100px; z-index: 110; }
 
-#photos img { width: 90px; }
+#image_functions { display: none; position: absolute; background: transparent url(../images/tooltips.png) no-repeat; width: 170px; z-index: 80; height: 100px; }
+#image_functions a { background: transparent url(../images/tooltip_buttons.png) no-repeat; width: 34px; height: 32px; display: block; float: left; margin-right: 5px; }
+#image_functions #zoomin { background-position: -45px -21px; margin: 20px 5px 6px 30px; }
+#image_functions #reset { background-position: -90px -21px; margin: 20px 5px 6px 0px; }
+#image_functions #zoomout { background-position: -130px -21px; margin: 20px 5px 6px 0px; }
+#image_functions #shiftleft { background-position: -26px -53px; clear: both; margin-left: 10px; }
+#image_functions #shiftdown { background-position: -67px -53px; }
+#image_functions #shiftup { background-position: -108px -53px; }
+#image_functions #shiftright { background-position: -147px -53px; }
+#image_functions #zoomin:hover { background-position: -45px -108px; }
+#image_functions #reset:hover { background-position: -90px -108px; }
+#image_functions #zoomout:hover { background-position: -130px -108px; }
+#image_functions #shiftleft:hover { background-position: -26px -140px; }
+#image_functions #shiftdown:hover { background-position: -67px -140px; }
+#image_functions #shiftup:hover { background-position: -108px -140px; }
+#image_functions #shiftright:hover { background-position: -147px -140px; }
+
+
+div.dragger img { width: 90px; }
 .jcarousel-direction-rtl { 	direction: rtl; }
 .jcarousel-container-vertical { width: 75px; height: 400px; padding: 40px 20px; }
 .jcarousel-clip-vertical { width: 75px; height: 400px; }
