@@ -1,68 +1,104 @@
 body { background: #91ada0; margin: 0px; }
 a { border: none; outline: none; }
 img { border: none; }
+h3 { margin: 10px 0px 5px 0px; font-family: sans-serif; }
+
 #background { width: 100%; height: 450px; position: relative; background-repeat: no-repeat; background-position: 50% bottom; }
  #display { position: absolute; }
  #display div { border: 10px solid #000; background: #FFF; position: absolute; overflow: hidden; }
  #display div img { position: relative; z-index: 10; }
  #display div a { position: absolute; bottom: 0px; right: 0px; z-index: 100; }
  #display div.hovering { border: 10px solid #999; }
+.dragger img { width: 90px; }
 
 #phototab { height: 500px; width: 136px; position: absolute; right: 0px; }
  #phototab_left { float: left; width: 34px; overflow: hidden; }
  #phototab_right { float: right; width: 100px; background: #FFF; height: 500px; }
-#configs { height: 500px; width: 236px; position: absolute; left: -200px; }
- #config_left { float: left; width: 200px; background: #FFF; height: 500px; }
+#configs { height: 500px; width: 236px; position: absolute; left: 0px; }
+ #config_left { float: left; width: 195px; background: #FFF; height: 500px; padding-left: 5px; }
  #config_right { float: right; width: 34px; overflow: hidden; }
-a.plus { background: transparent url(../images/tooltip_buttons.png) no-repeat -45px -21px; width: 34px; height: 32px; display: block; float: left; margin-right: 5px; }
-a.plus:hover { background-position: -45px -108px; }
+
+a.plus { background: transparent url(../images/tooltips.png) no-repeat 0px -1px; width: 33px; height: 33px; display: block; float: left; margin-right: 5px; }
+a.plus:hover { background-position: 0px -34px; }
+a.close { background: transparent url(../images/tooltips.png) no-repeat -235px -1px; width: 33px; height: 33px; display: block; float: left; margin-right: 5px; }
+a.close:hover { background-position: -235px -34px; }
+
+#bg_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #91ada0; }
+#bg_color:hover { cursor: pointer; }
+#frame_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #000; }
+#frame_color:hover { cursor: pointer; }
+
+#layouts { margin-top: 5px; }
+  #layouts a { display: inline-block; margin: 0px 3px 0px 0px; }
+  #layouts img { width: 40px; } 
+
+#patterns { margin-top: 5px; }
+  #patterns a { display: inline-block; margin: 0px 3px 0px 0px; width: 40px; height: 40px; overflow: hidden; }
+
+#furniture { margin-top: 5px; } 
+#furniture a { background-color: #999; display: inline-block; margin: 0px 3px 0px 0px; }
+  #furniture img { width: 40px; }
+
+#image_functions { display: none; position: absolute; background: transparent url(../images/tooltips.png) 0px -68px no-repeat; width: 170px; z-index: 80; height: 100px; }
+#image_functions a { background: transparent url(../images/tooltips.png) no-repeat; width: 33px; height: 33px; display: block; float: left; margin-right: 2px; }
+#image_functions #zoomin { background-position: 0px -1px; margin: 17px 2px 0px 23px; }
+#image_functions #reset { background-position: -33px -1px; margin: 17px 2px 0px 0px; }
+#image_functions #zoomout { background-position: -68px -1px; margin: 17px 2px 0px 0px; }
+#image_functions #shiftleft { background-position: -102px -1px; clear: both; margin-left: 4px; }
+#image_functions #shiftdown { background-position: -136px -1px; }
+#image_functions #shiftup { background-position: -169px -1px; }
+#image_functions #shiftright { background-position: -202px -1px; }
+#image_functions #zoomin:hover { background-position: 0px -34px; }
+#image_functions #reset:hover { background-position: -33px -34px; }
+#image_functions #zoomout:hover { background-position: -68px -34px; }
+#image_functions #shiftleft:hover { background-position: -102px -34px; }
+#image_functions #shiftdown:hover { background-position: -136px -34px; }
+#image_functions #shiftup:hover { background-position: -169px -34px; }
+#image_functions #shiftright:hover { background-position: -202px -34px; }
 
 
- #bg_color { border: 1px solid #999; width: 40px; height: 40px; }
- #bg_color:hover { cursor: pointer; }
- #frame_color { border: 1px solid #999; width: 40px; height: 40px; }
- #frame_color:hover { cursor: pointer; }
-#layouts { width: 100%; }
- #layouts a { display: block; margin-bottom: 10px; }
-#furniture a { background-color: #999; display: block; }
-
-#image_functions { display: none; position: absolute; background: transparent url(../images/tooltips.png) no-repeat; width: 170px; z-index: 80; height: 100px; }
-#image_functions a { background: transparent url(../images/tooltip_buttons.png) no-repeat; width: 34px; height: 32px; display: block; float: left; margin-right: 5px; }
-#image_functions #zoomin { background-position: -45px -21px; margin: 20px 5px 6px 30px; }
-#image_functions #reset { background-position: -90px -21px; margin: 20px 5px 6px 0px; }
-#image_functions #zoomout { background-position: -130px -21px; margin: 20px 5px 6px 0px; }
-#image_functions #shiftleft { background-position: -26px -53px; clear: both; margin-left: 10px; }
-#image_functions #shiftdown { background-position: -67px -53px; }
-#image_functions #shiftup { background-position: -108px -53px; }
-#image_functions #shiftright { background-position: -147px -53px; }
-#image_functions #zoomin:hover { background-position: -45px -108px; }
-#image_functions #reset:hover { background-position: -90px -108px; }
-#image_functions #zoomout:hover { background-position: -130px -108px; }
-#image_functions #shiftleft:hover { background-position: -26px -140px; }
-#image_functions #shiftdown:hover { background-position: -67px -140px; }
-#image_functions #shiftup:hover { background-position: -108px -140px; }
-#image_functions #shiftright:hover { background-position: -147px -140px; }
-
-
-div.dragger img { width: 90px; }
+/* Carousel */
 .jcarousel-direction-rtl { 	direction: rtl; }
-.jcarousel-container-vertical { width: 75px; height: 400px; padding: 40px 20px; }
+.jcarousel-container-vertical { width: 80px; height: 400px; padding: 40px 10px; }
 .jcarousel-clip-vertical { width: 75px; height: 400px; }
 .jcarousel-item { width: 75px; }
 .jcarousel-item-vertical { margin-bottom: 10px; }
 .jcarousel-item-placeholder { background: #fff; color: #000; }
-/**
- * Vertical Buttons
- */
-.jcarousel-next-vertical { position: absolute; bottom: 5px; left: 43px; width: 32px; height: 32px; cursor: pointer; background: transparent url(../images/next-vertical.png) no-repeat 0 0; }
-.jcarousel-next-vertical:hover { background-position: 0 -32px; }
-.jcarousel-next-vertical:active { background-position: 0 -64px; }
+.jcarousel-next-vertical { position: absolute; bottom: 5px; left: 36px; width: 33px; height: 33px; cursor: pointer; background: transparent url(../images/tooltips.png) no-repeat -136px -1px; }
+.jcarousel-next-vertical:hover { background-position: -136px -34px; }
+.jcarousel-next-vertical:active { background-position: -136px -34px; }
 .jcarousel-next-disabled-vertical,
 .jcarousel-next-disabled-vertical:hover,
-.jcarousel-next-disabled-vertical:active { cursor: default; background-position: 0 -96px; }
-.jcarousel-prev-vertical { position: absolute; top: 5px; left: 43px; width: 32px; height: 32px; cursor: pointer; background: transparent url(../images/prev-vertical.png) no-repeat 0 0; }
-.jcarousel-prev-vertical:hover { background-position: 0 -32px; }
-.jcarousel-prev-vertical:active { background-position: 0 -64px; }
+.jcarousel-next-disabled-vertical:active { cursor: default; opacity: 0.5; }
+.jcarousel-prev-vertical { position: absolute; top: 5px; left: 36px; width: 33px; height: 33px; cursor: pointer; background: transparent url(../images/tooltips.png) no-repeat -169px -1px; }
+.jcarousel-prev-vertical:hover { background-position: -169px -34px; }
+.jcarousel-prev-vertical:active { background-position: -169px -34px; }
 .jcarousel-prev-disabled-vertical,
 .jcarousel-prev-disabled-vertical:hover,
-.jcarousel-prev-disabled-vertical:active { cursor: default; background-position: 0 -96px; }
+.jcarousel-prev-disabled-vertical:active { cursor: default; opacity: 0.5; }
+
+/* Color picker */
+.colorpicker { width: 356px; height: 176px; overflow: hidden; position: absolute; background: url(../images/colorpicker_background.png); font-family: Arial, Helvetica, sans-serif; display: none; }
+.colorpicker_color { width: 150px; height: 150px; left: 14px; top: 13px; position: absolute; background: #f00; overflow: hidden; cursor: crosshair; }
+.colorpicker_color div { position: absolute; top: 0; left: 0; width: 150px; height: 150px; background: url(../images/colorpicker_overlay.png); }
+.colorpicker_color div div { position: absolute; top: 0; left: 0; width: 11px; height: 11px; overflow: hidden; background: url(../images/colorpicker_select.gif); margin: -5px 0 0 -5px; }
+.colorpicker_hue { position: absolute; top: 13px; left: 171px; width: 35px; height: 150px; cursor: n-resize; }
+.colorpicker_hue div { position: absolute; width: 35px; height: 9px; overflow: hidden; background: url(../images/colorpicker_indic.gif) left top; margin: -4px 0 0 0; left: 0px; }
+.colorpicker_new_color { position: absolute; width: 60px; height: 30px; left: 213px; top: 13px; background: #f00; }
+.colorpicker_current_color { position: absolute; width: 60px; height: 30px; left: 283px; top: 13px; background: #f00; }
+.colorpicker input { background-color: transparent; border: 1px solid transparent; position: absolute; font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: #898989; top: 4px; right: 11px; text-align: right; margin: 0; padding: 0; height: 11px; }
+.colorpicker_hex { position: absolute; width: 72px; height: 22px; background: url(../images/colorpicker_hex.png) top; left: 212px; top: 142px; }
+.colorpicker_hex input { right: 6px; }
+.colorpicker_field { height: 22px; width: 62px; background-position: top; position: absolute; }
+.colorpicker_field span { position: absolute; width: 12px; height: 22px; overflow: hidden; top: 0; right: 0; cursor: n-resize; }
+.colorpicker_rgb_r { background-image: url(../images/colorpicker_rgb_r.png); top: 52px; left: 212px; }
+.colorpicker_rgb_g { background-image: url(../images/colorpicker_rgb_g.png); top: 82px; left: 212px; }
+.colorpicker_rgb_b { background-image: url(../images/colorpicker_rgb_b.png); top: 112px; left: 212px; }
+.colorpicker_hsb_h { background-image: url(../images/colorpicker_hsb_h.png); top: 52px; left: 282px; }
+.colorpicker_hsb_s { background-image: url(../images/colorpicker_hsb_s.png); top: 82px; left: 282px; }
+.colorpicker_hsb_b { background-image: url(../images/colorpicker_hsb_b.png); top: 112px; left: 282px; }
+.colorpicker_submit { position: absolute; width: 22px; height: 22px; background: url(../images/colorpicker_submit.png) top; left: 322px; top: 142px; overflow: hidden; }
+.colorpicker_focus { background-position: center; }
+.colorpicker_hex.colorpicker_focus { background-position: bottom; }
+.colorpicker_submit.colorpicker_focus { background-position: bottom; }
+.colorpicker_slider { background-position: bottom; }

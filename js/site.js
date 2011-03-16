@@ -2,13 +2,18 @@ var current_region;
 
 $(function() {
 	$('#background').height($(window).height());
+	$('#background').hover(function() {
+		$('#image_functions').fadeOut();
+	});
 	$.ui.draggable.prototype.destroy = function (ul, item) { }; 
 	$('#photos').jcarousel({ vertical: true });
+	$('#bg_color').data('value', '#91ada0');
 	$('#bg_color').ColorPicker({
 		color: '#91ada0',
 		onSubmit: function (hsb, hex, rgb, el) {
 			$('body').css('backgroundColor', '#' + hex);
 			$('#bg_color').css('backgroundColor', '#' + hex);
+			$(this).data('value', '#' + hex);
 			$(el).ColorPickerHide();
 		},
 		onShow: function (colpkr) {
@@ -28,7 +33,21 @@ $(function() {
 			return false;
 		}
 	});
-	update_layout('4x4');
+	update_layout('triptych');
+
+	$.each(patterns, function(e, i) {
+		var img = $(document.createElement('img'))
+			.attr('src', i);
+		var link = $(document.createElement('a'))
+			.attr('href', '#')
+			.append(img)
+			.click(function() {
+				$('body').css('background', $('#bg_color').data('value') + ' url(' + i + ')');
+				return false;
+			});
+		$('#patterns').append(link);
+	});
+	
 	$.each(furniture, function(e, i) {
 		var img = $(document.createElement('img'))
 			.attr('src', i.small);
@@ -36,7 +55,7 @@ $(function() {
 			.attr('href', '#')
 			.append(img)
 			.click(function() {
-				update_furniture(i);
+				//$('#background').css('background-image', "url(" + i.large + ")");
 				return false;
 			});
 		$('#furniture').append(link);
@@ -101,28 +120,25 @@ $(function() {
 	$('#config_right a').click(function() {
 		if($('#configs').css('left') == '-200px') {
 			$('#configs').animate({ left: 0 });
+			$(this).addClass('close').removeClass('plus');
 		} else {
 			$('#configs').animate({ left: -200 });
+			$(this).addClass('plus').removeClass('close');
 		}
 	});
 	$('#phototab_left a').click(function() {
 		if($('#phototab').css('right') == '-100px') {
 			$('#phototab').animate({ right: 0 });
+			$(this).addClass('close').removeClass('plus');
 		} else {
 			$('#phototab').animate({ right: -100 });
+			$(this).addClass('plus').removeClass('close');
 		}
 	});
 });
 
-var update_furniture = function(e) {
-	$('#background').css('background-image', "url(" + e.large + ")");
-};
-
 var update_layout = function(layout) {
-	$('#image_functions').hide();
-
-	var left_shift = ($(document).width() - layouts[layout].width) / 2;
-	$('#display').css('left', left_shift);
+	$('#image_functions').fadeOut();
 	$('#display div').remove();
 	$.each(layouts[layout].photos, function(e, i) {
 		var element = $(document.createElement('div'));
@@ -142,6 +158,12 @@ var update_layout = function(layout) {
 			});
 		$('#display').append(element);
 	});
+	var left_shift = ($(document).width() - layouts[layout].width) / 2;
+	var top_shift = (($(document).height() - 200) - layouts[layout].height) / 2;
+	if(top_shift < 0) {
+		top_shift = 10;
+	}
+	$('#display').css({ left: left_shift, top: top_shift });
 	$('#display div').fadeIn();
 
 };
@@ -175,6 +197,12 @@ var drag_drop = function(element, dropped) {
 	return;
 };
 
+var patterns = {
+	'plain' : '',
+	'pattern-1' : 'images/pattern1.png',
+	'pattern-2' : 'images/pattern2.png',
+	'pattern-3' : 'images/pattern3.png'
+};
 var furniture = {
 	'table' : {
 		'small' : 'images/table_small.png',
@@ -189,22 +217,19 @@ var furniture = {
 var layouts = {
 	'triptych': {
 		'width': 750,
+		'height': 300,
 		'thumbnail': 'images/layout_triptych.jpg',
 		'photos' : {
 			'one' : {
-				'top': 10,
-				'left': 10,
 				'height': 300,
 				'width': 200
 			},
 			'two' : {
-				'top': 10,
 				'left': 240,
 				'height': 300,
 				'width': 200
 			},
 			'three' : {
-				'top': 10,
 				'left': 470,
 				'height': 300,
 				'width': 200
@@ -213,16 +238,14 @@ var layouts = {
 	},
 	'double': {
 		'width': 450,
+		'height': 300,
 		'thumbnail': 'images/layout_double.jpg',
 		'photos' : {
 			'one' : {
-				'top': 10,
-				'left': 10,
 				'height': 300,
 				'width': 200
 			},
 			'two' : {
-				'top': 10,
 				'left': 240,
 				'height': 300,
 				'width': 200
@@ -230,32 +253,29 @@ var layouts = {
 		}
 	},
 	'4x4':{
-		'width': 450,
+		'width': 350,
+		'height': 420,
 		'thumbnail': 'images/layout_double.jpg',
 		'photos' : {
 			'one' : {
-				'top': 10,
-				'left': 10,
-				'height': 200,
-				'width': 200
+				'height': 150,
+				'width': 150
 			},
 			'two' : {
-				'top': 10,
-				'left': 240,
-				'height': 200,
-				'width': 200
+				'left': 190,
+				'height': 150,
+				'width': 150
 			},
 			'three' : {
-				'top': 240,
-				'left': 10,
-				'height': 200,
-				'width': 200
+				'top': 190,
+				'height': 150,
+				'width': 150
 			},
 			'four' : {
-				'top': 240,
-				'left': 240,
-				'height': 200,
-				'width': 200
+				'top': 190,
+				'left': 190,
+				'height': 150,
+				'width': 150
 			}
 		}
 	}
