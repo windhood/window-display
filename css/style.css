@@ -1,9 +1,10 @@
 body { background: #91ada0; margin: 0px; }
 a { border: none; outline: none; }
 img { border: none; }
-h3 { margin: 10px 0px 5px 0px; font-family: sans-serif; }
+h3 { margin: 10px 0px 5px 0px; font-family: sans-serif; font-family: "Josefin Slab"; font-size: 17px; }
 
 #background { width: 100%; height: 450px; position: relative; background-repeat: no-repeat; background-position: 50% bottom; }
+#bg_furniture { position: absolute; bottom: 0px; width: 100%; height: 200px; background-repeat: no-repeat; background-position: 50% 0px; z-index: 1; }
  #display { position: absolute; }
  #display div { border: 10px solid #000; background: #FFF; position: absolute; overflow: hidden; }
  #display div img { position: relative; z-index: 10; }
@@ -11,10 +12,10 @@ h3 { margin: 10px 0px 5px 0px; font-family: sans-serif; }
  #display div.hovering { border: 10px solid #999; }
 .dragger img { width: 90px; }
 
-#phototab { height: 500px; width: 136px; position: absolute; right: 0px; }
+#phototab { height: 500px; width: 136px; position: absolute; right: 0px; z-index: 10; }
  #phototab_left { float: left; width: 34px; overflow: hidden; }
  #phototab_right { float: right; width: 100px; background: #FFF; height: 500px; }
-#configs { height: 500px; width: 236px; position: absolute; left: 0px; }
+#configs { height: 500px; width: 236px; position: absolute; left: 0px; z-index: 10; }
  #config_left { float: left; width: 195px; background: #FFF; height: 500px; padding-left: 5px; }
  #config_right { float: right; width: 34px; overflow: hidden; }
 
@@ -38,6 +39,7 @@ a.close:hover { background-position: -235px -34px; }
 #furniture { margin-top: 5px; } 
 #furniture a { background-color: #999; display: inline-block; margin: 0px 3px 0px 0px; }
   #furniture img { width: 40px; }
+
 
 #image_functions { display: none; position: absolute; background: transparent url(../images/tooltips.png) 0px -68px no-repeat; width: 170px; z-index: 80; height: 100px; }
 #image_functions a { background: transparent url(../images/tooltips.png) no-repeat; width: 33px; height: 33px; display: block; float: left; margin-right: 2px; }
@@ -78,7 +80,7 @@ a.close:hover { background-position: -235px -34px; }
 .jcarousel-prev-disabled-vertical:active { cursor: default; opacity: 0.5; }
 
 /* Color picker */
-.colorpicker { width: 356px; height: 176px; overflow: hidden; position: absolute; background: url(../images/colorpicker_background.png); font-family: Arial, Helvetica, sans-serif; display: none; }
+.colorpicker { width: 356px; height: 176px; overflow: hidden; position: absolute; background: url(../images/colorpicker_background.png); font-family: Arial, Helvetica, sans-serif; display: none; z-index: 100; }
 .colorpicker_color { width: 150px; height: 150px; left: 14px; top: 13px; position: absolute; background: #f00; overflow: hidden; cursor: crosshair; }
 .colorpicker_color div { position: absolute; top: 0; left: 0; width: 150px; height: 150px; background: url(../images/colorpicker_overlay.png); }
 .colorpicker_color div div { position: absolute; top: 0; left: 0; width: 11px; height: 11px; overflow: hidden; background: url(../images/colorpicker_select.gif); margin: -5px 0 0 -5px; }

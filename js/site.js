@@ -1,26 +1,28 @@
 var current_region;
 
 $(function() {
-	$('#background').height($(window).height());
-	$('#background').hover(function() {
-		$('#image_functions').fadeOut();
-	});
+	$('#background')
+		.height($(window).height())
+		.hover(function() {
+			$('#image_functions').fadeOut();
+		});
 	$.ui.draggable.prototype.destroy = function (ul, item) { }; 
 	$('#photos').jcarousel({ vertical: true });
-	$('#bg_color').data('value', '#91ada0');
-	$('#bg_color').ColorPicker({
-		color: '#91ada0',
-		onSubmit: function (hsb, hex, rgb, el) {
-			$('body').css('backgroundColor', '#' + hex);
-			$('#bg_color').css('backgroundColor', '#' + hex);
-			$(this).data('value', '#' + hex);
-			$(el).ColorPickerHide();
-		},
-		onShow: function (colpkr) {
-			$(colpkr).fadeIn(500);
-			return false;
-		}
-	});
+	$('#bg_color')
+		.data('value', '#91ada0')
+		.ColorPicker({
+			color: '#91ada0',
+			onSubmit: function (hsb, hex, rgb, el) {
+				$('body').css('backgroundColor', '#' + hex);
+				$('#bg_color').css('backgroundColor', '#' + hex);
+				$('#bg_color').data('value', '#' + hex);
+				$(el).ColorPickerHide();
+			},
+			onShow: function (colpkr) {
+				$(colpkr).fadeIn(500);
+				return false;
+			}
+		});
 	$('#frame_color').ColorPicker({
 		color: '#000',
 		onSubmit: function (hsb, hex, rgb, el) {
@@ -55,7 +57,7 @@ $(function() {
 			.attr('href', '#')
 			.append(img)
 			.click(function() {
-				//$('#background').css('background-image', "url(" + i.large + ")");
+				$('#bg_furniture').css('background-image', "url(" + i.large + ")");
 				return false;
 			});
 		$('#furniture').append(link);
@@ -170,6 +172,11 @@ var update_layout = function(layout) {
 
 var set_image_size = function(element, img) {
 	var img_aspect_ratio = img.width() / img.height();
+	if(img.height() == 0) {
+		// load image, then do other stuff
+	}
+console.log(img.width());
+console.log(img.height());
 	var div_aspect_ratio = $(element).width() / $(element).height();
 	if(img_aspect_ratio >= div_aspect_ratio) {
 		var new_width = img.width()*$(element).height()/$(img).height();
@@ -193,7 +200,15 @@ var drag_drop = function(element, dropped) {
 		.attr('src', dropped.find('img').attr('src').replace(/-[0-9][0-9][0-9]x[0-9][0-9][0-9]\.jpg/, '.jpg'))
 		.css('display', 'none');
 	$(element).append(img);
-	set_image_size(element, img);
+console.log($(img).height());
+	if($(img).height() > 0) {
+		set_image_size(element, img);
+	} else {
+		$.get($(img).attr('src'), function(data) {
+console.log('inside here??');
+			set_image_size(element, img);
+		});
+	}
 	return;
 };
 
