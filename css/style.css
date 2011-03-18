@@ -28,7 +28,7 @@ a.plus:hover { background-position: 0px -20px; }
 a.close { background: transparent url(../images/tooltips.png) no-repeat -140px 0px; width: 20px; height: 20px; display: block; float: left; margin-right: 5px; }
 a.close:hover { background-position: -140px -20px; }
 
-#bg_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #91ada0; }
+#bg_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #bfd0c8; }
 #frame_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #000; }
 #floor_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #999; }
 
