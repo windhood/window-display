@@ -1,13 +1,23 @@
 var current_region;
+var saved_images = {};
 
 $(function() {
-	$.ui.draggable.prototype.destroy = function (ul, item) { }; 
-	$('#background').height($(window).height())
-	$('#photos').jcarousel({ vertical: true });
+	$('#background,#phototab,#configs').height($(window).height()).fadeIn();
+	$('#photos').jcarousel({ vertical: true, wrap: 'circular' });
+	$('.jcarousel-vertical, .jcarousel-container-vertical, .jcarousel-clip-vertical').height($(window).height() - 60);
+
+	var welcome = $('<img>').attr('src', 'images/welcome.jpg').hide();
+	$(welcome).load(function() {
+		var left_shift = ($(document).width() - 623) / 2;
+		var top_shift = ($(document).height() - 507) / 2;
+		$('#display').append($('<div>').append(welcome)).css({ left: left_shift, top: top_shift });
+		$(welcome).fadeIn();
+	});
+
 	$('#bg_color')
-		.data('value', '#91ada0')
+		.data('value', '#bfd0c8')
 		.ColorPicker({
-			color: '#91ada0',
+			color: '#bfd0c8',
 			onSubmit: function (hsb, hex, rgb, el) {
 				$('body').css('backgroundColor', '#' + hex);
 				$('#bg_color').css('backgroundColor', '#' + hex);
@@ -19,18 +29,6 @@ $(function() {
 				return false;
 			}
 		});
-	$('#frame_color').ColorPicker({
-		color: '#000',
-		onSubmit: function (hsb, hex, rgb, el) {
-			$('#display div').css('border-color', '#' + hex);
-			$('#frame_color').css('backgroundColor', '#' + hex);
-			$(el).ColorPickerHide();
-		},
-		onShow: function (colpkr) {
-			$(colpkr).fadeIn(500);
-			return false;
-		}
-	});
 	$('#floor_color').ColorPicker({
 		color: '#999',
 		onSubmit: function (hsb, hex, rgb, el) {
@@ -42,8 +40,6 @@ $(function() {
 			return false;
 		}
 	});
-	update_layout('triptych');
-
 	$.each(patterns, function(e, i) {
 		var img = $('<img>')
 			.attr('src', i);
@@ -56,21 +52,6 @@ $(function() {
 			});
 		$('#patterns').append(link);
 	});
-
-	/*	
-	$.each(furniture, function(e, i) {
-		var img = $(document.createElement('img'))
-			.attr('src', i.small);
-		var link = $(document.createElement('a'))
-			.attr('href', '#')
-			.append(img)
-			.click(function() {
-				$('#bg_furniture').css('background-image', "url(" + i.large + ")");
-				return false;
-			});
-		$('#furniture').append(link);
-	});
-	*/
 	$.each(layouts, function(e, i) {
 		var img = $('<img>')
 			.attr('src', i.thumbnail);
@@ -100,22 +81,63 @@ $(function() {
 		}
 	});
 	$('#phototab_left a').click(function() {
-		if($('#phototab').css('right') == '-100px') {
+		if($('#phototab').css('right') == '-200px') {
 			$('#phototab').animate({ right: 0 });
 			$(this).addClass('close').removeClass('plus');
 		} else {
-			$('#phototab').animate({ right: -100 });
+			$('#phototab').animate({ right: -200 });
 			$(this).addClass('plus').removeClass('close');
 		}
 	});
+
+	$.ui.draggable.prototype.destroy = function (ul, item) { }; 
 });
 
+var load_images = function() {
+	//console.log(JSON.stringify(saved_images));
+	//console.log($.parseJSON(JSON.stringify(saved_images)));
+	$.each(saved_images, function(i, e) {
+		var new_div = $('#' + i);
+		var img = $('<img>')
+			.attr('src', e.src)
+			.css('display', 'none');
+		new_div.append(img);
+		if(new_div.width() + 'x' + new_div.height() == e.dimensions) {
+			img.css({ height: e.height, width: e.width, top: e.top, left: e.left }).fadeIn();
+		} else {
+			$(img).load(function() {
+				set_image_size(new_div, img);
+			});
+		}
+	});
+};
+
+var save_images = function() {
+	$('#display').children().each(function(i, e) {
+		var img = $(e).find('img');
+		if(img.length && $(img).attr('src') != 'images/welcome.jpg') {
+			var name = $(e).data('name');
+			saved_images[name] = {
+				'src': img.attr('src'),
+				'height': img.height(),
+				'width': img.width(),
+				'top': img.css('top'),
+				'left': img.css('left'),
+				'dimensions': $(e).width() + 'x' + $(e).height()
+			};
+		}
+	});
+};
+
 var update_layout = function(layout) {
+	save_images();	
+	$('#bg_floor').html('<div><b>' + layouts[layout].name + '</b>: $' + layouts[layout].price.toFixed(2) + '</div>');
 	$('#image_functions').fadeOut();
 	$('#display div').remove();
 	$.each(layouts[layout].photos, function(e, i) {
 		var element = $('<div>');
 		element.data('name', e)
+			.attr('id', e)
 			.css(i)
 			.css('display', 'none')
 			.droppable({
@@ -147,6 +169,7 @@ var update_layout = function(layout) {
 		top_shift = 20;
 	}
 	$('#display').css({ left: left_shift, top: top_shift });
+	load_images();
 	$('#display div').not($('.image_functions')).fadeIn();
 	initialize_image_manip();
 };
@@ -198,19 +221,10 @@ var patterns = {
 	'pattern-2' : 'images/pattern2.png',
 	'pattern-3' : 'images/pattern3.png'
 };
-var furniture = {
-	'table' : {
-		'small' : 'images/table_small.png',
-		'large' : 'images/table.png'
-	},
-	'sofa' : {
-		'small' : 'images/sofa_small.png',
-		'large' : 'images/sofa.png'
-	}
-};
-
 var layouts = {
 	'triptych': {
+		'name' : 'Triptych Canvas',
+		'price': 207.00,
 		'width': 670,
 		'height': 300,
 		'thumbnail': 'images/layout_triptych.jpg',
@@ -232,6 +246,8 @@ var layouts = {
 		}
 	},
 	'double': {
+		'name' : 'Double Canvas',
+		'price': 208.00,
 		'width': 440,
 		'height': 300,
 		'thumbnail': 'images/layout_double.jpg',
@@ -248,6 +264,8 @@ var layouts = {
 		}
 	},
 	'2x2':{
+		'name' : '2x2 Square Canvas',
+		'price': 201.00,
 		'width': 360,
 		'height': 440,
 		'thumbnail': 'images/layout_2x2.jpg',
@@ -275,6 +293,8 @@ var layouts = {
 		}
 	},
 	'3x2':{
+		'name' : '3x2 Square Canvas',
+		'price': 202.00,
 		'width': 550,
 		'height': 440,
 		'thumbnail': 'images/layout_3x2.jpg',
@@ -313,6 +333,8 @@ var layouts = {
 		}
 	},
 	'4x1':{
+		'name' : '4x1 Square Canvas',
+		'price': 203.00,
 		'width': 740,
 		'height': 170,
 		'thumbnail': 'images/layout_4x1.jpg',
@@ -339,6 +361,8 @@ var layouts = {
 		}
 	},
 	'5split':{
+		'name' : '5 Split Canvas',
+		'price': 204.00,
 		'width': 615,
 		'height': 440,
 		'thumbnail': 'images/layout_5split.jpg',
@@ -371,20 +395,22 @@ var layouts = {
 		}
 	},
 	'3splitleft':{
+		'name' : '3 Left Canvas',
+		'price': 205.00,
 		'width': 425,
 		'height': 440,
 		'thumbnail': 'images/layout_3splitleft.jpg',
 		'photos' : {
-			'two' : {
+			'one' : {
 				'height': 350,
 				'width': 225
 			},
-			'three' : {
+			'two' : {
 				'left': 255,
 				'height': 160,
 				'width': 160
 			},
-			'five' : {
+			'three' : {
 				'top': 190,
 				'left' : 255,
 				'height': 160,
@@ -393,6 +419,8 @@ var layouts = {
 		}
 	},
 	'3splitright':{
+		'name' : '3 Right Canvas',
+		'price': 206.00,
 		'width': 425,
 		'height': 440,
 		'thumbnail': 'images/layout_3splitright.jpg',
@@ -406,7 +434,7 @@ var layouts = {
 				'height': 350,
 				'width': 225
 			},
-			'four' : {
+			'three' : {
 				'top': 190,
 				'height': 160,
 				'width': 160
@@ -418,8 +446,10 @@ var layouts = {
 var initialize_image_manip = function() {
 	$('.zoomin').click(function() {
 		if(current_region.data('typeshift') == 'height') {
+			current_region.css('width', 'auto');
 			current_region.animate({ height: '+=20' });
 		} else {
+			current_region.css('height', 'auto');
 			current_region.animate({ width: '+=20' });
 		}	
 		return false;
@@ -432,8 +462,10 @@ var initialize_image_manip = function() {
 	});
 	$('.zoomout').click(function() {
 		if(current_region.data('typeshift') == 'height') {
+			current_region.css('width', 'auto');
 			current_region.animate({ height: '-=20' });
 		} else {
+			current_region.css('height', 'auto');
 			current_region.animate({ width: '-=20' });
 		}	
 		return false;

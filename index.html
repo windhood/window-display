@@ -5,30 +5,27 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Wall Display WordPress Plugin</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/tango.css" />
 	<script src="js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-min.js"></script>
 	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
 	<script type="text/javascript" src="js/site.js"></script>
 	<script type="text/javascript" src="js/colorpicker.js"></script>
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin+Slab">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin+Sans">
 </head>
 <body>
 <div id="background">
-	<div id="display">
-	</div>
+	<div id="display"></div>
 	<div id="configs">
-		<div id="config_left">
+		<div id="config_left"><div id="config_left_inner">
 			<h3>Colors</h3>
 			<a id="bg_color" title="Background"></a>
-			<a id="frame_color" title="Frame"></a>
 			<a id="floor_color" title="Frame"></a>
 			<h3>Patterns</h3>
 			<div id="patterns"></div>
 			<h3>Layouts</h3>
 			<div id="layouts"></div>
-			<!-- <h3>Furniture</h3>
-			<div id="furniture"></div> -->
-		</div>
+		</div></div>
 		<div id="config_right">
 			<a href="#" class="close"></a>
 		</div>
@@ -38,32 +35,29 @@
 			<a href="#" class="close"></a>
 		</div>
 		<div id="phototab_right">
-<ul id="photos">
-	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/one-300x200.jpg" /></div></li>
-	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/nine-209x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/two-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/ten-209x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/three-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/four-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/five-188x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/twelve-200x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/six-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/seven-200x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/eight-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/eleven-200x300.jpg" /></div></li>
- 	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/thirteen-200x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/fourteen-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/fifteen-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/sixteen-300x200.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/twentyone-200x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/seventeen-200x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/twenty-235x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/eighteen-200x300.jpg" /></div></li>
-    	<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/nineteen-300x201.jpg" /></div></li>
-</div>
+			<ul id="photos">
+				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/one-300x200.jpg" /></div></li>
+				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/nine-209x300.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/two-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/ten-209x300.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/three-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/four-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/five-188x300.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/twelve-200x300.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/six-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/eight-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/eleven-200x300.jpg" /></div></li>
+ 				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/thirteen-200x300.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/fourteen-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/fifteen-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img class="landscape" src="http://stephskardal.com/wp-content/uploads/2011/03/sixteen-300x200.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/twentyone-200x300.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/seventeen-200x300.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/twenty-235x300.jpg" /></div></li>
+    				<li><div class="dragger"><img src="http://stephskardal.com/wp-content/uploads/2011/03/eighteen-200x300.jpg" /></div></li>
+			</div>
 		</div>
 	</div>
-	<div id="bg_furniture"></div>
 	<div id="bg_floor"></div>
 </div>
 

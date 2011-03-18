@@ -1,29 +1,32 @@
-body { background: #91ada0; margin: 0px; }
+body { background: #bfd0c8; margin: 0px; }
 a { border: none; outline: none; }
 img { border: none; }
-h3 { margin: 10px 0px 5px 0px; font-family: sans-serif; font-family: "Josefin Slab"; font-size: 17px; }
+h3 { margin: 10px 0px 5px 0px; font-family: sans-serif; font-family: "Josefin Sans"; font-size: 17px; }
 
 #background { width: 100%; height: 450px; position: relative; background-repeat: no-repeat; background-position: 50% bottom; }
 #bg_furniture { position: absolute; bottom: 0px; width: 100%; height: 200px; background-repeat: no-repeat; background-position: 50% 0px; z-index: 2; }
-#bg_floor { position: absolute; bottom: 0px; width: 100%; height: 100px; background-repeat: no-repeat; background-position: 50% 0px; z-index: 1; background: #999; }
+#bg_floor { position: absolute; bottom: 0px; width: 100%; height: 100px; background-repeat: no-repeat; background-position: 50% 0px; z-index: 1; background: #999; text-align: center; }
+ #bg_floor div { margin-top: 20px; font-family: "Josefin Sans"; font-size: 18px; }
  #display { position: absolute; z-index: 3; }
- #display div { border: 10px solid #000; background: #FFF; position: absolute; overflow: hidden; text-align: center; }
+ #display div { border: 1px solid #000; background: #FFF; position: absolute; overflow: hidden; text-align: center; }
  #display div img { position: relative; z-index: 10; }
  #display div.hovering { opacity: 0.8; }
-.dragger { z-index: 101; }
-.dragger img { width: 90px; }
+.dragger { z-index: 101; text-align: center; }
+.dragger img { height: 170px; }
+.dragger .landscape { width: 170px; height: auto; padding-top: 24px; }
 
-#phototab { height: 500px; width: 136px; position: absolute; right: 0px; z-index: 10; }
- #phototab_left { float: left; width: 34px; overflow: hidden; }
- #phototab_right { float: right; width: 100px; background: #FFF; height: 500px; }
-#configs { height: 500px; width: 236px; position: absolute; left: 0px; z-index: 10; }
- #config_left { float: left; width: 195px; background: #FFF; height: 500px; padding-left: 5px; }
- #config_right { float: right; width: 34px; overflow: hidden; }
+#phototab { width: 220px; background: url(../images/panel.png) repeat-y -222px 0px; position: absolute; right: 0px; z-index: 10; display: none; }
+ #phototab_left { float: left; width: 20px; overflow: hidden; }
+ #phototab_right { float: right; width: 200px; }
+#configs { width: 220px; position: absolute; left: 0px; z-index: 10; background: url(../images/panel.png) repeat-y; display: none; }
+ #config_left { float: left; width: 190px; padding-left: 10px; }
+ #config_left_inner { width: 200px; }
+ #config_right { float: right; width: 20px; overflow: hidden; }
 
-a.plus { background: transparent url(../images/tooltips.png) no-repeat 0px -1px; width: 21px; height: 21px; display: block; float: left; margin-right: 5px; }
-a.plus:hover { background-position: 0px -22px; }
-a.close { background: transparent url(../images/tooltips.png) no-repeat -150px -1px; width: 21px; height: 21px; display: block; float: left; margin-right: 5px; }
-a.close:hover { background-position: -150px -22px; }
+a.plus { background: transparent url(../images/tooltips.png) no-repeat 0px 0px; width: 20px; height: 20px; display: block; float: left; margin-right: 5px; }
+a.plus:hover { background-position: 0px -20px; }
+a.close { background: transparent url(../images/tooltips.png) no-repeat -140px 0px; width: 20px; height: 20px; display: block; float: left; margin-right: 5px; }
+a.close:hover { background-position: -140px -20px; }
 
 #bg_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #91ada0; }
 #frame_color { border: 1px solid #999; width: 40px; height: 40px; display: inline-block; background: #000; }
@@ -42,38 +45,37 @@ a.close:hover { background-position: -150px -22px; }
 
 
 #display .image_functions { position: absolute; background: transparent url(../images/tooltips.png) 0px -68px no-repeat; width: 170px; z-index: 80; height: 24px; background: none; border: none; bottom: 0px; display: none; left: 1px; }
-.image_functions a { background: transparent url(../images/tooltips.png) no-repeat; width: 21px; height: 21px; display: block; float: left; margin-right: 2px; }
-.image_functions .zoomin { background-position: 0px -1px; }
-.image_functions .reset { background-position: -21px -1px; }
-.image_functions .zoomout { background-position: -42px -1px; }
-.image_functions .shiftleft { background-position: -63px -1px; }
-.image_functions .shiftdown { background-position: -84px -1px; }
-.image_functions .shiftup { background-position: -105px -1px; }
-.image_functions .shiftright { background-position: -126px -1px; }
-.image_functions .zoomin:hover { background-position: 0px -22px; }
-.image_functions .reset:hover { background-position: -21px -22px; }
-.image_functions .zoomout:hover { background-position: -42px -22px; }
-.image_functions .shiftleft:hover { background-position: -63px -22px; }
-.image_functions .shiftdown:hover { background-position: -84px -22px; }
-.image_functions .shiftup:hover { background-position: -105px -22px; }
-.image_functions .shiftright:hover { background-position: -126px -22px; }
+.image_functions a { background: transparent url(../images/tooltips.png) no-repeat; width: 20px; height: 20px; display: block; float: left; margin-right: 2px; }
+.image_functions .zoomin { background-position: 0px 0px; }
+.image_functions .reset { background-position: -20px 0px; }
+.image_functions .zoomout { background-position: -40px 0px; }
+.image_functions .shiftleft { background-position: -60px 0px; }
+.image_functions .shiftdown { background-position: -80px 0px; }
+.image_functions .shiftup { background-position: -100px 0px; }
+.image_functions .shiftright { background-position: -120px 0px; }
+.image_functions .zoomin:hover { background-position: 0px -20px; }
+.image_functions .reset:hover { background-position: -20px -20px; }
+.image_functions .zoomout:hover { background-position: -40px -20px; }
+.image_functions .shiftleft:hover { background-position: -60px -20px; }
+.image_functions .shiftdown:hover { background-position: -80px -20px; }
+.image_functions .shiftup:hover { background-position: -100px -20px; }
+.image_functions .shiftright:hover { background-position: -120px -20px; }
 
 /* Carousel */
-.jcarousel-direction-rtl { 	direction: rtl; }
-.jcarousel-container-vertical { width: 80px; height: 400px; padding: 40px 10px; }
-.jcarousel-clip-vertical { width: 75px; height: 400px; }
-.jcarousel-item { width: 75px; }
+.jcarousel-container-vertical { width: 170px; height: 400px; padding: 30px 10px 30px 15px; }
+.jcarousel-clip-vertical { width: 175px; height: 400px; }
+.jcarousel-item { width: 175px; height: 175px; }
 .jcarousel-item-vertical { margin-bottom: 10px; }
 .jcarousel-item-placeholder { background: #fff; color: #000; }
-.jcarousel-next-vertical { position: absolute; bottom: 5px; left: 40px; width: 21px; height: 21px; cursor: pointer; background: transparent url(../images/tooltips.png) no-repeat -86px -1px; }
-.jcarousel-next-vertical:hover { background-position: -86px -22px; }
-.jcarousel-next-vertical:active { background-position: -86px -22px; }
+.jcarousel-next-vertical { position: absolute; bottom: 5px; left: 98px; width: 21px; height: 20px; cursor: pointer; background: transparent url(../images/tooltips.png) no-repeat -80px 0px; }
+.jcarousel-next-vertical:hover { background-position: -80px -20px; }
+.jcarousel-next-vertical:active { background-position: -80px -20px; }
 .jcarousel-next-disabled-vertical,
 .jcarousel-next-disabled-vertical:hover,
 .jcarousel-next-disabled-vertical:active { cursor: default; opacity: 0.5; }
-.jcarousel-prev-vertical { position: absolute; top: 5px; left: 40px; width: 21px; height: 21px; cursor: pointer; background: transparent url(../images/tooltips.png) no-repeat -107px -1px; }
-.jcarousel-prev-vertical:hover { background-position: -107px -22px; }
-.jcarousel-prev-vertical:active { background-position: -107px -22px; }
+.jcarousel-prev-vertical { position: absolute; top: 5px; left: 98px; width: 21px; height: 20px; cursor: pointer; background: transparent url(../images/tooltips.png) no-repeat -100px 0px; }
+.jcarousel-prev-vertical:hover { background-position: -100px -20px; }
+.jcarousel-prev-vertical:active { background-position: -100px -20px; }
 .jcarousel-prev-disabled-vertical,
 .jcarousel-prev-disabled-vertical:hover,
 .jcarousel-prev-disabled-vertical:active { cursor: default; opacity: 0.5; }
